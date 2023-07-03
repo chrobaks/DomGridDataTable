@@ -1,6 +1,6 @@
 /**
  *-------------------------------------------
- * GridAppElementDataTable.js
+ * GridComponentDataTable.js
  *-------------------------------------------
  * @version 1.1.0
  * @createAt 17.06.2020 17:30
