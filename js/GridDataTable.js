@@ -308,7 +308,7 @@ class DataTableSearch
         let arrRes = [];
         let arrIndex = [];
         let arrRowIndex = [];
-        const asc = (order === 'down') ? 1 : 0;
+        const asc = (order !== 'down') ? 1 : 0;
 
         for (let i = 0; i < this.config.dataTable.length; i++) {
             let rowId = this.config.content.getElementsByClassName("data-row")[i].dataset.rowIndex*1;
@@ -346,8 +346,8 @@ class DataTableEvent
             col.onclick = () => {
                 // If active arrow than 1 or 0
                 const activeArrow = col.querySelectorAll('.svg-arrow-item.active').length;
-                // Arrow is first svg-arrow-item (desc)
-                let arrow = col.querySelectorAll('.svg-arrow-item')[0];
+                // Arrow is second svg-arrow-item (desc)
+                let arrow = col.querySelectorAll('.svg-arrow-item')[1];
                 // If active arrow already set, toggle desc and asc
                 if (activeArrow) {
                     arrow = (col.querySelectorAll('.svg-arrow-item')[0].classList.contains('active'))
@@ -842,32 +842,6 @@ class DataTable
             component: this,
             response: 'setResponse'
         });
-        // const xhttp = new XMLHttpRequest();
-        // const _this = this;
-        // // Create object with Form parameter
-        // // Add Search Param if exists
-        // let formData = (this.config.urlSearchParam !== null) ? {...this.config.urlSearchParam} : {};
-        // // Add postParam  if not empty
-        // if (postParam !== null) { formData = {...formData, ...postParam}; }
-        // // Scroll data table view to top
-        // this.config.dom.wrapper.scrollTop = 0;
-        //
-        // // Send ajax request
-        // xhttp.open("POST", this.config.ajaxUrl, true);
-        // xhttp.send(GridUi.formData(formData));
-        // xhttp.onreadystatechange = function() {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         const responseData = JSON.parse(this.responseText);
-        //         if (responseData.status === "success"){
-        //             _this.config.dom.container.style.display = 'block';
-        //             _this.setDataTable(responseData.dataTable);
-        //         } else {
-        //             if (responseData?.dataTable && responseData.dataTable.length < 1) {
-        //                 _this.config.dom.container.style.display = 'none';
-        //             }
-        //         }
-        //     }
-        // };
     }
 
     setResponse (data)
